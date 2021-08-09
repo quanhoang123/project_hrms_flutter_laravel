@@ -7,7 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class LaratrustSeeder extends Seeder
@@ -25,9 +25,7 @@ class LaratrustSeeder extends Seeder
         $config = config('laratrust_seeder.role_structure');
         $userPermission = config('laratrust_seeder.permission_structure');
         $mapPermission = collect(config('laratrust_seeder.permissions_map'));
-
         foreach ($config as $key => $modules) {
-
             // Create a new role
             $role = Role::create([
                 'name' => $key,
@@ -82,7 +80,7 @@ class LaratrustSeeder extends Seeder
                         'name' => ucwords(str_replace('_', ' ', $key)),
                         'email' => $key.'@app.com',
                         'password' => bcrypt('password'),
-                        'remember_token' => str_random(10),
+                        'remember_token' => Str::random(10),
                     ]);
                     $permissions = [];
 
