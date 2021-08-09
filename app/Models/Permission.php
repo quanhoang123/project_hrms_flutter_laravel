@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
-    protected $table='permission';
-    protected $fillable=['name','display_name','description'];
-
+    
     public $timestamps = true;
 }

@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(LaratrustSeeder::class);
         $this->call(PhongBansTableSeeder::class);
-        $this->call(HoSosTableSeeder::class);
+        $this->call(HoSoTableSeed::class);
         $this->call(NhanSusTableSeeder::class);
-        $this->call(HopDongsTableSeeder::class);
+        $this->call(HopDongTableSeeder::class);
         $this->call(QuyetDinhsTableSeeder::class);
     }
 }
