@@ -76,11 +76,8 @@ class LaratrustSeeder extends Seeder
 
         // Creating user with permissions
         if (!empty($userPermission)) {
-
             foreach ($userPermission as $key => $modules) {
-
                 foreach ($modules as $module => $value) {
-
                     // Create default user for each permission set
                     $user = \App\Models\User::create([
                         'name' => ucwords(str_replace('_', ' ', $key)),
@@ -103,13 +100,11 @@ class LaratrustSeeder extends Seeder
                         $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
                     }
                 }
-
                 // Attach all permissions to the user
                 $user->permissions()->sync($permissions);
             }
         }
     }
-
     /**
      * Truncates all the laratrust tables and the users table
      *

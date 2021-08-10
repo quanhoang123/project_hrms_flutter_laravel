@@ -43,6 +43,22 @@ class LaratrustSetupTables extends Migration
             $table->primary(['user_id', 'role_id', 'user_type']);
         });
 
+
+
+        // Create table for associating roles to users and teams (Many To Many Polymorphic)
+        Schema::create('dang_bai_viet', function (Blueprint $table) {
+            $table->unsignedInteger('role_id');
+            $table->unsignedInteger('id');
+            $table->string('title');
+            $table->text('content');
+            
+            $table->foreign('role_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['id', 'role_id']);
+        });
+
+
         // Create table for associating permissions to users (Many To Many Polymorphic)
         Schema::create('permission_user', function (Blueprint $table) {
             $table->unsignedInteger('permission_id');
@@ -81,5 +97,6 @@ class LaratrustSetupTables extends Migration
         Schema::dropIfExists('permissions');
         Schema::dropIfExists('role_user');
         Schema::dropIfExists('roles');
+        Schema::dropIfExists('dang_bai_viet');
     }
 }

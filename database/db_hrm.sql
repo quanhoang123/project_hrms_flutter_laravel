@@ -1,11 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 4.8.2
--- https://www.phpmyadmin.net/
---
+
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 20, 2018 lúc 07:28 AM
--- Phiên bản máy phục vụ: 5.7.19
--- Phiên bản PHP: 7.1.20
+-- Thời gian đã tạo: Th8 10, 2021 lúc 07:28 AM
+-- Phiên bản PHP: >7. 
+drop database laravel_flutter;
+Create database laravel_flutter;
+use laravel_flutter;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -23,6 +22,24 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `dang ky ung tuyen`
+--
+CREATE TABLE `dang_ky_ung_tuyen`(
+ `id` int(10)  not null primary key,
+ `nameEmp` int unsigned,
+ `gender` varchar(22),
+ `email` varchar(255),
+ `file` varchar(255),
+ `address` varchar(255),
+ `position` varchar(255)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+
+
 
 --
 -- Cấu trúc bảng cho bảng `bo_phans`
@@ -255,13 +272,18 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (18, 'update-hop-dong', 'Update Hop-dong', 'Update Hop-dong', '2018-09-20 07:27:40', '2018-09-20 07:27:40'),
 (19, 'delete-hop-dong', 'Delete Hop-dong', 'Delete Hop-dong', '2018-09-20 07:27:40', '2018-09-20 07:27:40'),
 (20, 'update-company', 'Update Company', 'Update Company', '2018-09-20 07:27:40', '2018-09-20 07:27:40'),
-(21, 'update-file-manager', 'Update File-manager', 'Update File-manager', '2018-09-20 07:27:40', '2018-09-20 07:27:40');
+(21, 'update-file-manager', 'Update File-manager', 'Update File-manager', '2018-09-20 07:27:40', '2018-09-20 07:27:40'),
+(22, 'create-bai-viet', 'Create Bai-Viet', 'Create Bai-Viet', '2018-09-20 07:27:40', '2018-09-20 07:27:40'),
+(23, 'read-bai-viet', 'Read Bai-Viet', 'Read Bai-Viet', '2021-07-20 07:27:40', '2021-08-10 07:27:40'),
+(24, 'update-bai-viet', 'Update Bai-Viet', 'Update Bai-Viet', '2021-06-20 07:27:40', '2021-07-20 07:27:40'),
+(25, 'delete-bai-viet', 'Delete Bai-Viet', 'Delete Bai-Viet', '2021-04-20 07:27:40', '2021-07-20 07:27:40');
 
 -- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `permission_role`
 --
+
 
 CREATE TABLE `permission_role` (
   `permission_id` int(10) UNSIGNED NOT NULL,
@@ -310,7 +332,21 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (10, 3),
 (11, 3),
 (13, 3),
-(17, 3);
+(17, 3),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(22, 2),
+(23, 2),
+(24, 2),
+(25, 2),
+(22, 3),
+(23, 3),
+(24, 3),
+(25, 3);
+
+
 
 -- --------------------------------------------------------
 
@@ -373,6 +409,22 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, 
 (3, 'user', 'User', 'User', '2018-09-20 07:27:42', '2018-09-20 07:27:42');
 
 -- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `đăng bài viết`
+--
+
+CREATE TABLE `dang_bai_viet`(
+	`id` int(10) primary key not null,
+    `title` varchar(255),
+    `content` text,
+	`role_id` int(11) UNSIGNED,
+	`created_at` timestamp NULL DEFAULT NULL,
+	`updated_at` timestamp NULL DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
 
 --
 -- Cấu trúc bảng cho bảng `role_user`
@@ -604,6 +656,13 @@ ALTER TABLE `permission_user`
 ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+
+-- 
+-- ràng buộc cho bảng dang_bài_viet với `role_user`
+--
+ALTER TABLE `dang_bài_viet` ADD FOREIGN KEY(role_id) REFERENCES `roles`(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

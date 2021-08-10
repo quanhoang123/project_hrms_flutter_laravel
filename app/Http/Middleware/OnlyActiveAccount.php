@@ -20,10 +20,12 @@ class OnlyActiveAccount
     {
         if( Auth::check() && Auth::user()->active ){
             return $next($request);
+        }else{
+            $email = Auth::user()->email;
+            Auth::logout();
+            Log::error('Email: '.$email.' đăng nhập thất bại, tài khoản chưa được kích hoạt');
+            return redirect()->route('login')->with('status_error', 'Đăng nhập thất bại, tài khoản chưa được kích hoạt!');
         }
-        $email = Auth::user()->email;
-        Auth::logout();
-        Log::error('Email: '.$email.' đăng nhập thất bại, tài khoản chưa được kích hoạt');
-        return redirect()->route('login')->with('status_error', 'Đăng nhập thất bại, tài khoản chưa được kích hoạt!');
+       
     }
 }

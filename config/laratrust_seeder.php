@@ -11,7 +11,8 @@ return [
             'hop-dong'  => 'c,r,u,d',
             'quyet-dinh'=> 'c,r,u,d',
             'company'   => 'u',
-            'file-manager' => 'u'
+            'file-manager' => 'u',
+            'bai-viet'=>'c,r,u,d',
         ],
         'administrator' => [
             'dashboard' => 'r',
@@ -20,13 +21,15 @@ return [
             'hop-dong'  => 'c,r,u,d',
             'quyet-dinh'=> 'c,r,u,d',
             'company'   => 'u',
-            'file-manager' => 'u'
+            'file-manager' => 'u',
+            'bai-viet'=>'c,r,u,d',
         ],
         'user' => [
             'dashboard' => 'r',
             'profile'   => 'r,u',
             'nhan-su'   => 'r',
-            'hop-dong'  => 'r'
+            'hop-dong'  => 'r',
+            'bai-viet'=>'c,r,u,d',
         ],
     ],
     'permission_structure' => [],
