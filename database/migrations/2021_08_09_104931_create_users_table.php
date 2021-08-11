@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('avatar')->default('default-avatar.jpg');
+            $table->string('avatar')->default('https://i.ibb.co/D9x0GBF/avatar.png');
             $table->boolean('active')->default(true);
             $table->rememberToken();
             $table->timestamps();
