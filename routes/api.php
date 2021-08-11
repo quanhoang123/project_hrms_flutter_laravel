@@ -32,18 +32,7 @@ Route::get('/user', [UserController::class,'getCurrentUser']);
 Route::post('/update', 'UserController@update');
 
 
-Route::group(['middleware' => OnlyActiveAccount::class], function () {
-    Route::get('/logout',  [UserController::class,'logout']);
-
-    // Account controller
-    Route::get('/roles', [AccountController::class,'index']);
-    Route::get('/create-role',[AccountController::class,'create']);
-    Route::post('/store-role',[AccountController::class,'store']);
-    Route::get('/show-role/{id}',[AccountController::class,'show']);
-    Route::get('/show-permission',[AccountController::class,'show_permission']);
-    Route::post('/edit-role/{id}',[AccountController::class,'update']);
-
-
+   
     // Employee controoler
     Route::get('/employee',[NhanSuController::class,'index']);
     Route::get('/read-employee/{id}',[NhanSuController::class,'read']);
@@ -52,6 +41,17 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::get('/edit-employee/{id}', [NhanSuController::class,'edit']);
     Route::post('/edit-employee/{id}',[NhanSuController::class,'update']);
     Route::post('/delete-employee/{id}',[NhanSuController::class,'destroy']);
+
+
+Route::group(['middleware' => OnlyActiveAccount::class], function () {
+    Route::get('/logout',  [UserController::class,'logout']);
+    // Account controller
+    Route::get('/roles', [AccountController::class,'index']);
+    Route::get('/create-role',[AccountController::class,'create']);
+    Route::post('/store-role',[AccountController::class,'store']);
+    Route::get('/show-role/{id}',[AccountController::class,'show']);
+    Route::get('/show-permission',[AccountController::class,'show_permission']);
+    Route::post('/edit-role/{id}',[AccountController::class,'update']);
 
 
     // Ung Tuyen Nhan Vien Controller

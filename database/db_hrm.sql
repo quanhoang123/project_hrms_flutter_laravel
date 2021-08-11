@@ -468,9 +468,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `avatar`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Superadministrator', 'superadministrator@app.com', '$2y$10$nUNxOxhi3cE3KT1fSC6lWeweGjXXZmc5AvJVtwIEpWqCkzWL2t1GG', 'default-avatar.jpg', 1, NULL, '2018-09-20 07:27:41', '2018-09-20 07:27:41'),
-(2, 'Administrator', 'administrator@app.com', '$2y$10$AQKakC2D73rkQ7I.bu2x0uY/khhb82Sk0wJIc5Lmtt1OjPVYttYYy', 'default-avatar.jpg', 1, NULL, '2018-09-20 07:27:42', '2018-09-20 07:27:42'),
-(3, 'User', 'user@app.com', '$2y$10$MRaqtippu88k0PuSgOWGNespqTMYjr2Ryh.Rwj00Eb3QZSZH0gTea', 'default-avatar.jpg', 1, NULL, '2018-09-20 07:27:42', '2018-09-20 07:27:42');
+(1, 'Superadministrator', 'superadministrator@app.com', '$2y$10$nUNxOxhi3cE3KT1fSC6lWeweGjXXZmc5AvJVtwIEpWqCkzWL2t1GG', 'https://i.ibb.co/D9x0GBF/avatar.png', 1, NULL, '2018-09-20 07:27:41', '2018-09-20 07:27:41'),
+(2, 'Administrator', 'administrator@app.com', '$2y$10$AQKakC2D73rkQ7I.bu2x0uY/khhb82Sk0wJIc5Lmtt1OjPVYttYYy', 'https://i.ibb.co/D9x0GBF/avatar.png', 1, NULL, '2018-09-20 07:27:42', '2018-09-20 07:27:42'),
+(3, 'User', 'user@app.com', '$2y$10$MRaqtippu88k0PuSgOWGNespqTMYjr2Ryh.Rwj00Eb3QZSZH0gTea', 'https://i.ibb.co/D9x0GBF/avatar.png', 1, NULL, '2018-09-20 07:27:42', '2018-09-20 07:27:42');
 
 --
 -- Chỉ mục cho các bảng đã đổ
