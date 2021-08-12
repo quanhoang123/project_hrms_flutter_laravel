@@ -24,7 +24,11 @@ class OnlyActiveAccount
             $email = Auth::user()->email;
             Auth::logout();
             Log::error('Email: '.$email.' đăng nhập thất bại, tài khoản chưa được kích hoạt');
-            return redirect()->route('login')->with('status_error', 'Đăng nhập thất bại, tài khoản chưa được kích hoạt!');
+            return response()->json([
+                "success" => false,
+                "message" => "That Bai",
+                "data" => $email,
+            ]);
         }
        
     }

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DangBai extends Model
 {
     use HasFactory;
+    protected $table='dang_bai_viet';
+    protected $fillable=['title','content','image'];
+    public $timestamps = true;
 }

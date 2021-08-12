@@ -416,8 +416,9 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, 
 
 CREATE TABLE `dang_bai_viet`(
 	`id` int(10) primary key not null,
-    `title` varchar(255),
-    `content` text,
+  `title` varchar(255),
+  `content` text,
+  `image` varchar(255),
 	`role_id` int(11) UNSIGNED,
 	`created_at` timestamp NULL DEFAULT NULL,
 	`updated_at` timestamp NULL DEFAULT NULL

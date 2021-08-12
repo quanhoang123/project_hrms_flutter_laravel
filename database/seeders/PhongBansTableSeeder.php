@@ -34,7 +34,7 @@ class PhongBansTableSeeder extends Seeder
             ],
             [
                 'id'   => 5,
-                'ten' => 'Kinh Doanh'
+                'ten' => 'Dev'
             ]
         );
         
