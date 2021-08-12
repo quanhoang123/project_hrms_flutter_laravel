@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -38,18 +40,18 @@ class UserController extends Controller
         }
         // get the user
         $user = Auth::user();
-
         return response()->json([
             'success' => true,
             'token' => $jwt_token,
             'user' => $user,
         ]);
     }
+
     public function logout(Request $request)
     {
         if (!User::checkToken($request)) {
             return response()->json([
-                'message' => 'Token is required ne',
+                'message' => 'Token is required',
                 'success' => false,
             ], 422);
         }

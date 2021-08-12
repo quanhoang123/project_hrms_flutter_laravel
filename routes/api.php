@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AccountController;
 use App\Http\Controllers\API\BaiVietController;
+use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\UngTuyenController;
 use App\Http\Controllers\UserController;
@@ -28,10 +29,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
-Route::post('/register', 'UserController@register');
-Route::post('/login', [UserController::class,'login']);
-Route::get('/user', [UserController::class,'getCurrentUser']);
-Route::post('/update', [UserController::class,'update']);
+
+// Dashboard Routes...
+Route::get('dashboard', [
+    'uses' => [DashboardController::class,'getDashboard'],
+    'as'   => 'dashboard'
+])->middleware(['auth','only_active_user']);
+
+
+
+
+    Route::post('/register', 'UserController@register');
+    Route::post('/login', [UserController::class,'login']);
+    Route::get('/user', [UserController::class,'getCurrentUser']);
+    Route::post('/update', [UserController::class,'update']);
 
     // Employee controoler
     Route::get('/employee',[EmployeeController::class,'index']);
@@ -48,27 +59,24 @@ Route::post('/update', [UserController::class,'update']);
     Route::put('baiviet/{id}', [BaiVietController::class,'update']);
     Route::delete('baiviet/{id}', [BaiVietController::class,'delete']);
 
-    Route::get('ungtuyen', [UngTuyenController::class,'index']);
-    Route::get('ungtuyen/{id}', [UngTuyenController::class,'show']);
-    Route::post('ungtuyen', [UngTuyenController::class,'store']);
-    Route::put('ungtuyen/{id}', [UngTuyenController::class,'update']);
-    Route::delete('ungtuyen/{id}', [UngTuyenController::class,'delete']);
-
+    
    
-
 
 Route::group(['middleware' => OnlyActiveAccount::class], function () {
-   
-    // Ung Tuyen Nhan Vien Controller
-     // Account
-    Route::get('/logout',  [UserController::class,'logout']);
-     // Account controller
+    // Account controller
+    Route::get('/logout',  [UserController::class,'logout']);   
     Route::get('/roles', [AccountController::class,'index']);
     Route::get('/create-role',[AccountController::class,'create']);
     Route::post('/store-role',[AccountController::class,'store']);
     Route::get('/show-role/{id}',[AccountController::class,'show']);
     Route::get('/show-permission',[AccountController::class,'show_permission']);
     Route::post('/edit-role/{id}',[AccountController::class,'update']);
- 
- 
+
+
+    // Ung Tuyen Nhan Vien Controller
+    Route::get('ungtuyen', [UngTuyenController::class,'index']);
+    Route::get('ungtuyen/{id}', [UngTuyenController::class,'show']);
+    Route::post('ungtuyen', [UngTuyenController::class,'store']);
+    Route::put('ungtuyen/{id}', [UngTuyenController::class,'update']);
+    Route::delete('ungtuyen/{id}', [UngTuyenController::class,'delete']);
 });
