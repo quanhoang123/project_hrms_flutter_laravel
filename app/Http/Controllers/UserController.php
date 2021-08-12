@@ -49,7 +49,7 @@ class UserController extends Controller
     {
         if (!User::checkToken($request)) {
             return response()->json([
-                'message' => 'Token is required',
+                'message' => 'Token is required ne',
                 'success' => false,
             ], 422);
         }
