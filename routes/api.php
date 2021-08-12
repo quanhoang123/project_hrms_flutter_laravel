@@ -59,12 +59,7 @@ Route::get('dashboard', [
     Route::put('baiviet/{id}', [BaiVietController::class,'update']);
     Route::delete('baiviet/{id}', [BaiVietController::class,'delete']);
 
-    
-   
 
-Route::group(['middleware' => OnlyActiveAccount::class], function () {
-    // Account controller
-    Route::get('/logout',  [UserController::class,'logout']);   
     Route::get('/roles', [AccountController::class,'index']);
     Route::get('/create-role',[AccountController::class,'create']);
     Route::post('/store-role',[AccountController::class,'store']);
@@ -79,4 +74,11 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::post('ungtuyen', [UngTuyenController::class,'store']);
     Route::put('ungtuyen/{id}', [UngTuyenController::class,'update']);
     Route::delete('ungtuyen/{id}', [UngTuyenController::class,'delete']);
+    
+   
+
+Route::group(['middleware' => OnlyActiveAccount::class], function () {
+    // Account controller
+    Route::get('/logout',  [UserController::class,'logout']);   
+    
 });
