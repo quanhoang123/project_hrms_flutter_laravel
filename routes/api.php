@@ -54,9 +54,7 @@ Route::post('/update', [UserController::class,'update']);
     Route::put('ungtuyen/{id}', [UngTuyenController::class,'update']);
     Route::delete('ungtuyen/{id}', [UngTuyenController::class,'delete']);
 
-
-
-Route::group(['middleware' => OnlyActiveAccount::class], function () {
+    // Account
     Route::get('/logout',  [UserController::class,'logout']);
     // Account controller
     Route::get('/roles', [AccountController::class,'index']);
@@ -67,6 +65,10 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::post('/edit-role/{id}',[AccountController::class,'update']);
 
 
+
+
+Route::group(['middleware' => OnlyActiveAccount::class], function () {
+   
     // Ung Tuyen Nhan Vien Controller
     
 });
