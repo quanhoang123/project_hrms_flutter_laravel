@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class RoleController extends Controller
 {
@@ -153,6 +155,27 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        
+        $user = Role::findOrFail($id);
+
+        if($user->id == Auth::user()->id){
+            return redirect()->route('user.index')->with('status_danger', 'Bạn không được xóa tài khoản của mình!');
+        }else{
+            try{
+                $user->delete();
+                Log::info('Người dùng ID:'.Auth::user()->id.' đã xóa người dùng id:'.$id);
+                return response()->json([
+                    'message'=>'Xóa người dùng thành công!!!',
+                    'status'=>200,
+                ]);   
+            }
+            catch(\Exception $e){
+                Log::error($e);
+                return response()->json([
+                    'message'=>'Xảy ra lỗi khi xóa người dùng!',
+                    'status'=>200,
+                ]);  
+            }
+            
+        }
     }
 }

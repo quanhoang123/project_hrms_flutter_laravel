@@ -22,20 +22,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-// Home Routes...
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-});
+    // Home Routes...
+    Route::get('/', function () {
+        return redirect()->route('dashboard');
+    });
 
-// Dashboard Routes...
-Route::get('dashboard', [
-    'uses' => [DashboardController::class,'getDashboard'],
-    'as'   => 'dashboard'
-])->middleware(['auth','only_active_user']);
+    // Dashboard Routes...
+    Route::get('dashboard', [
+        'uses' => [DashboardController::class,'getDashboard'],
+        'as'   => 'dashboard'
+    ])->middleware(['auth','only_active_user']);
 
 
 
@@ -50,12 +50,13 @@ Route::get('dashboard', [
 Route::group(['middleware' => OnlyActiveAccount::class], function () {
     // Account controller
     Route::get('/logout',  [UserController::class,'logout']);  
-    Route::get('/account', [UserController::class,'index']);
-    Route::get('/add-account', [UserController::class,'create']);
-    Route::post('/add-account', [UserController::class,'store']);
-    Route::get('/edit-account/{id}', [UserController::class,'edit']);
-    Route::post('/edit-account', [UserController::class,'update']);
-    Route::get('/delete-account/{id}',  [UserController::class,'destroy']);
+
+    Route::get('/account', [AccountController::class,'index']);
+    Route::get('/add-account', [AccountController::class,'create']);
+    Route::post('/add-account', [AccountController::class,'store']);
+    Route::get('/edit-account/{id}', [AccountController::class,'edit']);
+    Route::post('/edit-account', [AccountController::class,'update']);
+    Route::get('/delete-account/{id}',  [AccountController::class,'destroy']);
  
     
     // Employee controoler
@@ -80,9 +81,8 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::get('/show-role/{id}',[RoleController::class,'show']);
     Route::get('/show-permission',[RoleController::class,'show_permission']);
     Route::post('/edit-role/{id}',[RoleController::class,'update']);
-
+    Route::delete('/delete-role/{id}',[RoleController::class,'destroy']);
     // Account Controller
-
 
 
     // Ung Tuyen Nhan Vien Controller
