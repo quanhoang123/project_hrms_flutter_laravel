@@ -1,27 +1,7 @@
 
--- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th8 10, 2021 lúc 07:28 AM
--- Phiên bản PHP: >7. 
 drop database laravel_flutter;
 Create database laravel_flutter;
 use laravel_flutter;
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Cơ sở dữ liệu: `db_hrm`
---
-
--- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `dang ky ung tuyen`
@@ -35,7 +15,6 @@ CREATE TABLE `dang_ky_ung_tuyen`(
  `address` varchar(255),
  `position` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 
 
 
@@ -94,10 +73,10 @@ CREATE TABLE `hop_dongs` (
 --
 
 INSERT INTO `hop_dongs` (`id`, `nhansu_id`, `ma_hd`, `ten`, `loaihopdong_id`, `ngay_ky`, `ngay_co_hieu_luc`, `ngay_het_hieu_luc`, `luong_can_ban`, `luong_tro_cap`, `luong_hieu_qua`, `trang_thai`, `created_at`, `updated_at`) VALUES
-(1, 1, 'TP0001/2018/HĐTV-TP', 'Hợp đồng thử việc', 1, '2018-06-11 00:00:00', '2018-06-11 00:00:00', '2018-08-10 00:00:00', '3.800.000', '20.000.000', '30.000.000', 0, NULL, NULL),
-(2, 1, 'TP0001/2018/HĐLĐ-TP', 'Hợp đồng lao động', 2, '2018-08-11 00:00:00', '2018-08-11 00:00:00', '2019-08-10 00:00:00', '3.800.000', '40.000.000', '50.000.000', 1, NULL, NULL),
-(3, 2, 'TP0002/2018/HĐTV-TP', 'Hợp đồng thử việc', 1, '2017-05-20 00:00:00', '2017-05-20 00:00:00', '2017-07-19 00:00:00', '3.800.000', '6.000.000', '7.150.000', 0, NULL, NULL),
-(4, 2, 'TP0002/2018/HĐLĐ-TP', 'Hợp đồng lao động', 2, '2017-07-20 00:00:00', '2017-07-20 00:00:00', '2018-07-19 00:00:00', '3.800.000', '5.000.000', '3.200.000', 1, NULL, NULL);
+(1, 1, 'DN0001/2018/HĐTV-TP', 'Hợp đồng thử việc', 1, '2018-06-11 00:00:00', '2018-06-11 00:00:00', '2018-08-10 00:00:00', '3.800.000', '20.000.000', '30.000.000', 0, NULL, NULL),
+(2, 1, 'DN0001/2018/HĐLĐ-TP', 'Hợp đồng lao động', 2, '2018-08-11 00:00:00', '2018-08-11 00:00:00', '2019-08-10 00:00:00', '3.800.000', '40.000.000', '50.000.000', 1, NULL, NULL),
+(3, 2, 'DN0002/2018/HĐTV-TP', 'Hợp đồng thử việc', 1, '2017-05-20 00:00:00', '2017-05-20 00:00:00', '2017-07-19 00:00:00', '3.800.000', '6.000.000', '7.150.000', 0, NULL, NULL),
+(4, 2, 'DN0002/2018/HĐLĐ-TP', 'Hợp đồng lao động', 2, '2017-07-20 00:00:00', '2017-07-20 00:00:00', '2018-07-19 00:00:00', '3.800.000', '5.000.000', '3.200.000', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -665,6 +644,3 @@ COMMIT;
 ALTER TABLE `dang_bài_viet` ADD FOREIGN KEY(role_id) REFERENCES `roles`(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -56,7 +56,6 @@ class LaratrustSetupTables extends Migration
             $table->foreign('role_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            // $table->primary(['id', 'role_id']);
         });
 
 

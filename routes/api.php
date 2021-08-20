@@ -57,8 +57,7 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::get('/edit-account/{id}', [AccountController::class,'edit']);
     Route::post('/edit-account', [AccountController::class,'update']);
     Route::get('/delete-account/{id}',  [AccountController::class,'destroy']);
-    Route::get('/total_user/{status}',[AccountController::class,'getTotalOfNumberUser']);
-    
+
     
     // Employee controoler
     Route::get('/employee',[EmployeeController::class,'index']);
@@ -68,7 +67,7 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::get('/edit-employee/{id}', [EmployeeController::class,'edit']);
     Route::post('/edit-employee/{id}',[EmployeeController::class,'update']);
     Route::post('/delete-employee/{id}',[EmployeeController::class,'destroy']);
-    Route::get('/total_staff/{status}',[EmployeeController::class,'getTotalOfNumberStaff']);
+  
 
     Route::get('baiviet', [BaiVietController::class,'index']);
     Route::get('baiviet/{id}', [BaiVietController::class,'show']);
@@ -81,7 +80,7 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::get('/create-role',[RoleController::class,'create']);
     Route::post('/store-role',[RoleController::class,'store']);
     Route::get('/show-role/{id}',[RoleController::class,'show']);
-    Route::get('/show-permission',[RoleController::class,'show_permission']);
+    Route::get('/edit-role/{id}',[RoleController::class,'edit']);
     Route::post('/edit-role/{id}',[RoleController::class,'update']);
     Route::delete('/delete-role/{id}',[RoleController::class,'destroy']);
     // Account Controller

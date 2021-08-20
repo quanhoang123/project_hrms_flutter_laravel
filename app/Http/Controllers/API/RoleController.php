@@ -23,8 +23,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $account=Role::all();
-        return $account;
+        $role=Role::all();
+        return $role;
+           
     }
 
     /**
@@ -86,15 +87,15 @@ class RoleController extends Controller
     public function show($id)
     {
         $role = Role::where('id',$id)->with('permissions')->first();
-        // $permissions = Permission::all();
-        // $concat=$role.$permissions;
-        return $role;
-        // return $role->withRole($role)->withPermissions($permissions);   
-    }
-    public function show_permission(){
         $permissions = Permission::all();
-        return $permissions;
+        return response()->json([
+            'role'=>$role,
+            'permission'=>$permissions,
+            'status'=>200,
+        ]);
+        
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -104,8 +105,12 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::where('id',$id)->with('permissions')->first();
-        // $permissions = Permission::all();   
-        return $role;
+        $permissions = Permission::all();
+        return response()->json([
+            'role'=>$role,
+            'permission'=>$permissions,
+            'status'=>200,
+        ]);
     }
 
     /**
@@ -132,7 +137,7 @@ class RoleController extends Controller
         }
         if($role !=null){
             return response()->json([
-                'message'=>'Account Created Successfully!!',
+                'message'=>'Role Created Successfully!!',
                 'role'=>$role->display_name,
                 'status'=>200,
             ]);

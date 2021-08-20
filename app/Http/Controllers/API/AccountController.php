@@ -20,7 +20,16 @@ class AccountController extends Controller
     public function index()
     {
         $account=User::all();
-        return $account;
+        $total=0;
+        if(User::where('active', 1)){
+            $total = User::all()->count();
+        }
+        return response()->json([
+            'message'=>'Data Account !!',
+            'account'=>$account,
+            'total'=>$total,
+            'status'=>200,
+        ]); 
     }
 
     /**
@@ -28,18 +37,7 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function getTotalOfNumberUser($status){
-        $total = 0;
-        if($status == -1){
-            $total = User::all()->count();
-        }elseif($status == 0){
-            $total = User::where('active', 0)->get()->count();
-        }elseif($status == 1){
-            $total = User::where('active', 1)->get()->count();
-        }
 
-        return $total;
-    }
     /**
      * Show the form for creating a new resource.
      *

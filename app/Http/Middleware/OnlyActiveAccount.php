@@ -21,9 +21,6 @@ class OnlyActiveAccount
         if( Auth::check() && Auth::user()->active ){
             return $next($request);
         }else{
-            // $email = Auth::user()->email;
-            // Auth::logout();
-            // Log::error('Email: '.$email.' đăng nhập thất bại, tài khoản chưa được kích hoạt');
             return response()->json([
                 'status_error' => 'Đăng nhập thất bại, tài khoản chưa được kích hoạt!',
             ], 401);

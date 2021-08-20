@@ -25,23 +25,15 @@ class EmployeeController extends Controller
     public function index()
     {
         $employee=NhanSu::all();
-        return $employee;
+        $total = NhanSu::all()->count();
+        return response()->json([
+            'message'=>'Data Employee !!',
+            'employee'=>$employee,
+            'total'=>$total,
+            'status'=>200,
+        ]); 
     }
     
-    
-    function getTotalOfNumberStaff($status){
-        $total = 0;
-        if($status == -1){
-            $total = NhanSu::all()->count();
-        }elseif($status == 0){
-            $total = NhanSu::where('trang_thai', 0)->get()->count();
-        }elseif($status == 1){
-            $total = NhanSu::where('trang_thai', 1)->get()->count();
-        }
-
-        return $total;
-    }
-
 
     public function read($id)
     {
