@@ -28,6 +28,21 @@ class EmployeeController extends Controller
         return $employee;
     }
     
+    
+    function getTotalOfNumberStaff($status){
+        $total = 0;
+        if($status == -1){
+            $total = NhanSu::all()->count();
+        }elseif($status == 0){
+            $total = NhanSu::where('trang_thai', 0)->get()->count();
+        }elseif($status == 1){
+            $total = NhanSu::where('trang_thai', 1)->get()->count();
+        }
+
+        return $total;
+    }
+
+
     public function read($id)
     {
         $nhan_su = NhanSu::findOrFail($id);
@@ -183,6 +198,7 @@ class EmployeeController extends Controller
             ]);      
         
         }
+        
         catch(\Exception $e){
             Log::error($e);
             return response()->json([

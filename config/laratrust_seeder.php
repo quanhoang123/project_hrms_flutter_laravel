@@ -2,7 +2,7 @@
 
 return [
     'role_structure' => [
-        'superadministrator' => [
+        'superadmin' => [
             'dashboard' => 'r',
             'users'     => 'c,r,u,d',
             'acl'       => 'c,r,u,d',
@@ -14,7 +14,7 @@ return [
             'file-manager' => 'u',
             'bai-viet'=>'c,r,u,d',
         ],
-        'administrator' => [
+        'admin' => [
             'dashboard' => 'r',
             'profile'   => 'r,u',
             'nhan-su'   => 'c,r,u',

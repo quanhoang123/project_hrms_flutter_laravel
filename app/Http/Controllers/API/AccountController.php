@@ -24,6 +24,23 @@ class AccountController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function getTotalOfNumberUser($status){
+        $total = 0;
+        if($status == -1){
+            $total = User::all()->count();
+        }elseif($status == 0){
+            $total = User::where('active', 0)->get()->count();
+        }elseif($status == 1){
+            $total = User::where('active', 1)->get()->count();
+        }
+
+        return $total;
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -62,7 +79,9 @@ class AccountController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         // $user->role = $request->role;
-        
+        $user->active = $request->active;
+        $image=$this->save_record_image($_FILES['image']);
+        $user->avatar=$image['data']['url'];
         try{
             $user->save();
             $user->syncRoles($request->role);

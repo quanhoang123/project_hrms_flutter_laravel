@@ -45,7 +45,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/user', [UserController::class,'getCurrentUser']);
     Route::post('/update', [UserController::class,'update']);
 
-   
+    
 
 Route::group(['middleware' => OnlyActiveAccount::class], function () {
     // Account controller
@@ -57,7 +57,8 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::get('/edit-account/{id}', [AccountController::class,'edit']);
     Route::post('/edit-account', [AccountController::class,'update']);
     Route::get('/delete-account/{id}',  [AccountController::class,'destroy']);
- 
+    Route::get('/total_user/{status}',[AccountController::class,'getTotalOfNumberUser']);
+    
     
     // Employee controoler
     Route::get('/employee',[EmployeeController::class,'index']);
@@ -67,6 +68,7 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::get('/edit-employee/{id}', [EmployeeController::class,'edit']);
     Route::post('/edit-employee/{id}',[EmployeeController::class,'update']);
     Route::post('/delete-employee/{id}',[EmployeeController::class,'destroy']);
+    Route::get('/total_staff/{status}',[EmployeeController::class,'getTotalOfNumberStaff']);
 
     Route::get('baiviet', [BaiVietController::class,'index']);
     Route::get('baiviet/{id}', [BaiVietController::class,'show']);

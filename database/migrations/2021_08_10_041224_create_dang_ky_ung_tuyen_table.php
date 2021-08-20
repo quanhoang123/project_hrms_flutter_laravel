@@ -22,6 +22,7 @@ class CreateDangKyUngTuyenTable extends Migration
             $table->string('file_cv')->nullable();
             $table->string('address')->nullable();
             $table->string('position')->nullable();
+            $table->string('status')->default(true);
             $table->timestamps();
         });
     }

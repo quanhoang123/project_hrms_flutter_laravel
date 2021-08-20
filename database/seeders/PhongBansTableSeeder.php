@@ -42,27 +42,27 @@ class PhongBansTableSeeder extends Seeder
         // Seeder Bộ phận
         $bophans = array(
             [
-                'ten'        => 'Thiết Kế',
+                'ten'        => 'DeSign',
                 'phongban_id' => 1
             ],
             [
-                'ten'        => 'IT',
+                'ten'        => 'Technical',
                 'phongban_id' => 1
             ],
             [
-                'ten'        => 'Bảo Trì',
+                'ten'        => 'Maintant',
                 'phongban_id' => 1
             ],
             [
-                'ten'        => 'Xưởng',
+                'ten'        => 'Store',
                 'phongban_id' => 1
             ],
             [
-                'ten'        => 'Kế Toán',
+                'ten'        => 'Accounting',
                 'phongban_id' => 3
             ],
             [
-                'ten'        => 'Cung Ứng',
+                'ten'        => 'Customer Service',
                 'phongban_id' => 3
             ],
             [

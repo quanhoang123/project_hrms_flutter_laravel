@@ -25,6 +25,19 @@ class UngTuyenController extends Controller
         ]);
     }
 
+
+    function getTotalOfNumberStaff($status){
+        $total = 0;
+        if($status == -1){
+            $total = UngTuyen::all()->count();
+        }elseif($status == 0){
+            $total = UngTuyen::where('status', 0)->get()->count();
+        }elseif($status == 1){
+            $total = UngTuyen::where('status', 1)->get()->count();
+        }
+        return $total;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -72,7 +72,7 @@ class UserController extends Controller
 
     public function getCurrentUser(Request $request)
     {
-        if (!User::checkToken($request)) {
+        if (User::checkToken($request)) {
             return response()->json([
                 'message' => 'Token is required',
             ], 422);
