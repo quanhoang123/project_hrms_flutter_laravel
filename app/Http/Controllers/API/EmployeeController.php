@@ -76,7 +76,7 @@ class EmployeeController extends Controller
             'ma_nv.unique' => '"Mã nhân viên" đã tồn tại',
             'so_cmnd.unique' => '"Số CMND" đã tồn tại'
         ]);
-        
+      
         try{
             $nhan_su = NhanSu::saveNhanSu(0, $request->all());
             Log::info('Người dùng ID:'.Auth::user()->id.' đã thêm nhân sự ID:'.$nhan_su->id.'-'.$nhan_su->ho_ten);
@@ -91,8 +91,8 @@ class EmployeeController extends Controller
             Log::error($e);
             return response()->json([
                 'message'=>'Employee do not created Successfully!!',
-                'employee'=>$nhan_su,
                 'status' => 100,
+                'erorr'=>$nhan_su
             ]);
         }
     }

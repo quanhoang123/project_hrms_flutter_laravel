@@ -10,7 +10,8 @@ class NhanSu extends Model
 {
     use HasFactory;
     public $timestamps = true;
-
+    protected $table ='nhan_sus';
+    protected $fillable=['ma_nv','ho_ten','gioi_tinh','ngay_sinh','so_cmnd','ngay_cap_cmnd','noi_cap_cmnd','dia_chi_thuong_tru','dia_chi_lien_he','dien_thoai','email','trinh_do','truong_tot_nghiep','nam_tot_nghiep','ngay_bat_dau_lam','ngay_lam_viec_cuoi','chuc_danh','phongban_id','bophan_id','chung_chi','hoso_id','trang_thai'];
     /**
      * Get the phongban for the nhansu.
      */
@@ -78,7 +79,7 @@ class NhanSu extends Model
             $nhan_su->hoso_id        = $data['hoso_id'];
         }else{
             if(!empty($data['hoso_id'])){
-                $nhan_su->hoso_id        = implode(',', $data['hoso_id']);
+                $nhan_su->hoso_id        = $data['hoso_id'];
             }else{
                 $nhan_su->hoso_id        = null;
             }
