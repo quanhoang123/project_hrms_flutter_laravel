@@ -145,7 +145,6 @@ class RoleController extends Controller
         else{
             return response()->json([
                 'message'=>'Account do not created Successfully!!',
-                'role'=>$role,
                 'status' => 100,
             ]);
         }

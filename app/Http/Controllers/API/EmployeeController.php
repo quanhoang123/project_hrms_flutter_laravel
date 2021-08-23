@@ -179,7 +179,7 @@ class EmployeeController extends Controller
             $nhan_su->delete();
             Log::info('Người dùng ID:'.Auth::user()->id.' đã xóa nhân sự id:'.$id.'-'.$name);
             return response()->json([
-                'message'=>'Employee Created Successfully!!',
+                'message'=>'Delete Employee Successfully!!',
                 'employee'=>$nhan_su,
                 'status'=>200,
             ]);      
@@ -189,8 +189,7 @@ class EmployeeController extends Controller
         catch(\Exception $e){
             Log::error($e);
             return response()->json([
-                'message'=>'Employee do not created Successfully!!',
-                'employee'=>$nhan_su,
+                'message'=>'Employee do not delete !!',
                 'status' => 100,
             ]);
         }
