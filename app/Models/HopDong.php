@@ -19,7 +19,7 @@ class HopDong extends Model
      */
     public function loaihopdongs()
     {
-        return $this->belongsTo('App\LoaiHopDong', 'loaihopdong_id');
+        return $this->belongsTo('App\Models\LoaiHopDong', 'loaihopdong_id');
     }
 
     /**
@@ -27,7 +27,7 @@ class HopDong extends Model
      */
     public function nhansus()
     {
-        return $this->belongsTo('App\NhanSu', 'nhansu_id');
+        return $this->belongsTo('App\Models\NhanSu', 'nhansu_id');
     }
 
     public static function saveHopDong($id, $data){

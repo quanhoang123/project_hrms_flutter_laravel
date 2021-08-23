@@ -16,7 +16,7 @@ class NhanSu extends Model
      */
     public function phongbans()
     {
-        return $this->belongsTo('App\PhongBan', 'phongban_id');
+        return $this->belongsTo('App\Models\PhongBan', 'phongban_id');
     }
 
     /**
@@ -24,7 +24,7 @@ class NhanSu extends Model
      */
     public function bophans()
     {
-        return $this->belongsTo('App\BoPhan', 'bophan_id');
+        return $this->belongsTo('App\Models\BoPhan', 'bophan_id');
     }
 
     /**

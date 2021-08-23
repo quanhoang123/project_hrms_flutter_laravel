@@ -23,7 +23,7 @@ class QuyetDinh extends Model
      */
     public function loaiquyetdinhs()
     {
-        return $this->belongsTo('App\LoaiQuyetDinh', 'loaiquyetdinh_id');
+        return $this->belongsTo('App\Models\LoaiQuyetDinh', 'loaiquyetdinh_id');
     }
 
     public static function saveQuyetDinh($id, $data){
