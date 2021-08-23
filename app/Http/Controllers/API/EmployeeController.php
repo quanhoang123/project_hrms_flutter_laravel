@@ -25,13 +25,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employee=NhanSu::all();
-        $total = NhanSu::all()->count();
-        return response()->json([
-            'message'=>'Data Employee !!',
-            'employee'=>$employee,
-            'total'=>$total,
-            'status'=>200,
-        ]); 
+        return $employee;
     }
     
 
@@ -111,7 +105,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $total = NhanSu::all()->count();
+        return $total; 
     }
 
     /**
