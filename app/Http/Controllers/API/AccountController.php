@@ -20,14 +20,9 @@ class AccountController extends Controller
     public function index()
     {
         $account=User::all();
-        $total=0;
-        if(User::where('active', 1)){
-            $total = User::all()->count();
-        }
         return response()->json([
             'message'=>'Data Account !!',
             'account'=>$account,
-            'total'=>$total,
             'status'=>200,
         ]); 
     }
