@@ -61,16 +61,11 @@ class AccountController extends Controller
             'password.min'      => '"Mật khẩu" phải ít nhất 6 ký tự',
             'password.max'      => '"Mật khẩu" không quá 32 ký tự'
         ]);
-
         $user = new User;
-
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        // $user->role = $request->role;
-        $user->active = $request->active;
-        $image=$this->save_record_image($_FILES['image']);
-        $user->avatar=$image['data']['url'];
+      
         try{
             $user->save();
             $user->syncRoles($request->role);
@@ -86,13 +81,10 @@ class AccountController extends Controller
         catch(\Exception $e){
             Log::error($e);
             return response()->json([
-                'message'=>'Account do not created Successfully!!',
-                'role'=>$user,
+                'message'=>'Do not create account !!',
                 'status' => 100,
             ]);
-        }
-        
-          
+        }       
         
     }
 
@@ -157,7 +149,7 @@ class AccountController extends Controller
             Log::info('Người dùng ID:'.Auth::user()->id.' đã chỉnh sửa người dùng id:'.$user->id);
             return response()->json([
                 'message'=>'Account Created Successfully!!',
-                'role'=>$user,
+                'user'=>$user,
                 'status'=>200,
             ]);
         }
