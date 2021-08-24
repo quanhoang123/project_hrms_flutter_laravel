@@ -5,11 +5,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\BoPhan;
 use App\Models\HopDong;
-use App\Models\HoSo;
+use App\Models\HoSos;
 use App\Models\LoaiHopDong;
 use App\Models\LoaiQuyetDinh;
 use App\Models\NhanSu;
-use App\Models\PhongBan;
+
+use App\Models\PhongBans;
 use App\Models\QuyetDinh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,9 +43,8 @@ class EmployeeController extends Controller
     // AJAX function
     public function dsBoPhanTheoPhongBan(Request $request)
 	{
-		if ($request->ajax()) {
-			return response()->json(BoPhan::getByPhongBanId($request->phongban_id)->get());
-		}
+		
+		return response()->json(BoPhan::getByPhongBanId($request->phongban_id)->get());
     }
     // END AJAX
 
@@ -56,8 +56,8 @@ class EmployeeController extends Controller
     public function create()
     {
         return response()->json([
-            'ds_phong_ban' => PhongBan::all(),
-            'ds_ho_so' => HoSo::all()
+            'ds_phong_ban' => PhongBans::all(),
+            'ds_ho_so' => HoSos::all()
         ]);
     }
 
@@ -92,7 +92,6 @@ class EmployeeController extends Controller
             return response()->json([
                 'message'=>'Employee do not created Successfully!!',
                 'status' => 100,
-                'erorr'=>$nhan_su
             ]);
         }
     }
@@ -119,8 +118,8 @@ class EmployeeController extends Controller
     {
         return response()->json([
             'nhan_su'       => NhanSu::findOrFail($id), 
-            'ds_phong_ban'  => PhongBan::all(),
-            'ds_ho_so'      => HoSo::all()->pluck('ten','id'),
+            'ds_phong_ban'  => PhongBans::all(),
+            'ds_ho_so'      => HoSos::all()->pluck('ten','id'),
             'ds_hop_dong'   => HopDong::getByNhanSuId($id)->get(),
             'ds_loai_hd'    => LoaiHopDong::all(),
             'ds_quyet_dinh' => QuyetDinh::getByNhanSuId($id)->get(),
@@ -151,6 +150,7 @@ class EmployeeController extends Controller
             return response()->json([
                 'message'=>'Employee Created Successfully!!',
                 'employee'=>$nhan_su,
+                'Admin'=>Auth::user()->name,
                 'status'=>200,
             ]);      
         
@@ -159,7 +159,6 @@ class EmployeeController extends Controller
             Log::error($e);
             return response()->json([
                 'message'=>'Employee do not created Successfully!!',
-                'employee'=>$nhan_su,
                 'status' => 100,
             ]);
         }
@@ -183,7 +182,6 @@ class EmployeeController extends Controller
                 'employee'=>$nhan_su,
                 'status'=>200,
             ]);      
-        
         }
         
         catch(\Exception $e){
@@ -194,117 +192,4 @@ class EmployeeController extends Controller
             ]);
         }
     }
-
-    // public function postImportExcel(Request $request){
-    //     if($request->input('excel_link')){
-    //         if(file_exists(storage_path('app/'.$request->input('excel_link')))){
-
-    //             $file_ext = pathinfo(storage_path('app/'.$request->input('excel_link')), PATHINFO_EXTENSION);
-
-    //             if($file_ext == 'xlsx' || $file_ext == 'xls' || $file_ext == 'csv'){
-    //                 $collection = (new FastExcel)->import(storage_path('app/'.$request->input('excel_link')));
-    
-    //                 if($collection->count() > 0 ){
-    //                     // dd($collection);
-    //                     $trung_ma_nv = '';
-    //                     $trung_so_cmnd = '';
-    //                     $count = 0;
-    //                     foreach($collection as $k => $v){
-    //                         if(!NhanSu::where('ma_nv', $v['ma_nv'])->exists()){
-    //                             if(!NhanSu::where('so_cmnd', $v['so_cmnd'])->exists()){
-    //                                 NhanSu::saveNhanSu(-1, $v);
-    //                             }else{
-    //                                 $count++;
-    //                                 $trung_so_cmnd .= $v['ma_nv'] . '|';
-    //                             }
-    //                         }else{
-    //                             $count++;
-    //                             $trung_ma_nv .= $v['ma_nv'] . '|';
-    //                         }
-    //                     }
-                        
-    //                     return response()
-    //                         ->json([
-    //                             'result' => true,
-    //                             'message' => 'Nhập liệu thành công!',
-    //                             'data' => [
-    //                                 'count' => $count,
-    //                                 'trung_ma_nv' => $trung_ma_nv,
-    //                                 'trung_so_cmnd' => $trung_so_cmnd
-    //                             ]
-    //                         ]);
-                        
-    //                 }else{
-    //                     return response()->json([
-    //                             'result' => false,
-    //                             'message' => 'Tập tin rỗng!'
-    //                         ]);
-    //                 }
-    //             }else{
-    //                 return response()->json([
-    //                     'result' => false,
-    //                     'message' => 'Định dạng file không đúng!'
-    //                 ]);
-    //             }
-                
-    //         }else{
-    //             return response()->json([
-    //                     'result' => false,
-    //                     'message' => 'Tập tin không tồn tại!'
-    //                 ]);
-    //         }
-    //     }else{
-    //         return response()->json([
-    //                     'result' => false,
-    //                     'message' => 'Vui lòng chọn tệp tin!'
-    //                 ]);
-    //     }
-    // }
-
-    // public function exportExcel(){
-    //     $nhan_su = NhanSu::all();
-
-    //     // Xử lý hồ sơ nhân viên
-    //     foreach($nhan_su as $v){
-    //         $nhan_su_hs = '';
-    //         $hoso_id = json_decode($v->hoso_id);
-    //         foreach( $hoso_id as $k2 => $v2 ){
-    //             if ($v2 === end($hoso_id)) {
-    //                 $nhan_su_hs .= HoSo::getNameById($v2);
-    //             }else{
-    //                 $nhan_su_hs .= HoSo::getNameById($v2) .', ';
-    //             }
-    //         }
-    //         $v->hoso_id = $nhan_su_hs;
-    //     }
-        
-    //     return (new FastExcel($nhan_su))->download('ds_nhan_su.xlsx', function($nhan_su){
-    //         $array_export = [
-    //             'Mã NV' => $nhan_su->ma_nv,              
-    //             'Họ tên' => $nhan_su->ho_ten,             
-    //             'Địa chỉ thường trú' => $nhan_su->dia_chi_thuong_tru, 
-    //             'Địa chỉ liên hệ' => $nhan_su->dia_chi_lien_he,    
-    //             'Điện thoại' => $nhan_su->dien_thoai,         
-    //             'Email' => $nhan_su->email,             
-    //             'Giới tính' => ($nhan_su->gioi_tinh == 1) ? 'Nam' : 'Nữ',          
-    //             'Ngày sinh' => $nhan_su->ngay_sinh,        
-    //             'Số CMND' => $nhan_su->so_cmnd,           
-    //             'Ngày cấp CMND' => $nhan_su->ngay_cap_cmnd,     
-    //             'Nơi cấp CMND' => $nhan_su->noi_cap_cmnd,       
-    //             'Ngày bắt đầu làm' => $nhan_su->ngay_bat_dau_lam,  
-    //             'Ngày làm việc cuối' => $nhan_su->ngay_lam_viec_cuoi,   
-    //             'Trình độ' => $nhan_su->trinh_do,          
-    //             'Trường tốt nghiệp' => $nhan_su->truong_tot_nghiep,  
-    //             'Năm tốt nghiệp' => $nhan_su->nam_tot_nghiep,   
-    //             'Chứng chỉ' => $nhan_su->chung_chi,        
-    //             'Chức danh' => $nhan_su->chuc_danh,        
-    //             'Phòng ban' => ($nhan_su->phongban_id != 0) ? $nhan_su->phongbans->ten : '',       
-    //             'Bộ phận' => ($nhan_su->bophan_id != 0) ? $nhan_su->bophans->ten : '',   
-    //             'Hồ sơ' => $nhan_su->hoso_id,   
-    //             'Trạng thái' => ($nhan_su->trang_thai == 1)?'Đang làm việc':'Thôi việc'
-    //         ];
-            
-    //         return $array_export;
-    //     });
-    // }
 }

@@ -20,11 +20,7 @@ class AccountController extends Controller
     public function index()
     {
         $account=User::all();
-        return response()->json([
-            'message'=>'Data Account !!',
-            'account'=>$account,
-            'status'=>200,
-        ]); 
+        return $account;
     }
 
     /**
