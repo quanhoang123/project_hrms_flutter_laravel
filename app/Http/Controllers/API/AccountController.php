@@ -134,13 +134,11 @@ class AccountController extends Controller
         $request->validate([
             'name'     => 'required',
             'email'    => 'required|email|unique:users,email,'.$request->id,
-            'password' => 'max:32' 
         ],[
             'name.required'    => 'Bạn chưa nhập "Họ tên"',
             'email.required'   => 'Bạn chưa nhập "Email"',
             'email.email'      => '"Email" không đúng định dạng',
-            'email.unique'     => '"Email" người dùng đã tồn tại',
-            'password.max'     => '"Mật khẩu" không quá 32 ký tự'
+            'email.unique'     => '"Email" người dùng đã tồn tại',         
         ]);
 
         $user = User::findOrFail($request->id);
@@ -150,8 +148,10 @@ class AccountController extends Controller
             $user->password = bcrypt($request->password);
         }
         $user->active = $request->active;
-        $image=$this->save_record_image($_FILES['image']);
-        $user->avatar=$image['data']['url'];
+        if(!empty($request->cavatar)){
+            $image=$this->save_record_image($_FILES['cavatar']);
+            $user->avatar=$image['data']['url'];
+        }
         try{
             $user->save();
             $user->syncRoles($request->role);
