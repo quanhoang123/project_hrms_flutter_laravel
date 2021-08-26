@@ -55,7 +55,7 @@ Route::group(['middleware' => OnlyActiveAccount::class], function () {
     Route::get('/add-account', [AccountController::class,'create']);
     Route::post('/add-account', [AccountController::class,'store']);
     Route::get('/edit-account/{id}', [AccountController::class,'edit']);
-    Route::post('/edit-account', [AccountController::class,'update']);
+    Route::post('/edit-account/{id}', [AccountController::class,'update']);
     Route::get('/delete-account/{id}',  [AccountController::class,'destroy']);
 
     
