@@ -18,11 +18,7 @@ class UngTuyenController extends Controller
     public function index()
     {
         $ung_tuyen=UngTuyen::all();
-        return response()->json([
-            "success" => true,
-            "message" => "List Ung Cu Vien",
-            "data" => $ung_tuyen,
-        ]);
+        return $ung_tuyen;
     }
 
 

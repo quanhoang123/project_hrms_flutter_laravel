@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NhanSusTableSeeder::class);
         $this->call(HopDongTableSeeder::class);
         $this->call(QuyetDinhsTableSeeder::class);
+        $this->call(DangKyUngTuyenSeed::class);
     }
 }

@@ -16,13 +16,13 @@ class CreateDangKyUngTuyenTable extends Migration
         Schema::create('dang_ky_ung_tuyen', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nameEmp');
-            $table->string('gender');
+            $table->boolean('gender')->default(true);;
             $table->string('dienthoai')->nullable();
             $table->string('email')->nullable();
             $table->string('file_cv')->nullable();
             $table->string('address')->nullable();
             $table->string('position')->nullable();
-            $table->string('status')->default(true);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
