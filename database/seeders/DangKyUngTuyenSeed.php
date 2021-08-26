@@ -18,13 +18,13 @@ class DangKyUngTuyenSeed extends Seeder
             [
                 'id'=>1,
                 'nameEmp'=>'Hoang Trung Quan',
-                'gender'=>1,
+                'gender'=>true,
                 'dienthoai'=>'0355739816',
                 'email'=>'hoangtrungquan2001@gmail.com',
                 'file_cv'=>'https://www.coolfreecv.com/images/cv_templates_with_photo.jpg',
                 'address'=>'101b Le Huu Trac, Son Tra , Da Nang',
                 'position'=>'Dev Developer',
-                'status'=>'1',
+                'status'=>true,
                 'created_at'=>null,
                 'updated_at'=>null
             ]
