@@ -114,7 +114,12 @@ class AccountController extends Controller
     public function edit($id)
     { 
         $user = User::where('id', $id)->with('roles')->first();
-        return $user;
+        $roles = Role::all();
+        return  response()->json([
+            'user'=>$user,
+            'roles'=>$roles,
+            'status'=>200,
+        ]);
     }
 
     /**
