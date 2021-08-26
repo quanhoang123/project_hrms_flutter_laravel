@@ -91,9 +91,6 @@ class AccountController extends Controller
                 'status' => 100,
             ]);
         }
-        
-          
-        
     }
 
     /**
@@ -106,9 +103,10 @@ class AccountController extends Controller
     {
         $user = User::where('id', $id)->with('roles')->first();
         return $user;
-        // return $role->withRole($role)->withPermissions($permissions);   
+  
     }
    
+
     /**
      * Show the form for editing the specified resource.
      *
