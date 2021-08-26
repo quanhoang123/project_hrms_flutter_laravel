@@ -101,9 +101,7 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->with('roles')->first();
-        return $user;
-  
+       //
     }
    
 
@@ -115,8 +113,8 @@ class AccountController extends Controller
      */
     public function edit($id)
     { 
-        $roles = Role::all();
-        return $roles;
+        $user = User::where('id', $id)->with('roles')->first();
+        return $user;
     }
 
     /**
