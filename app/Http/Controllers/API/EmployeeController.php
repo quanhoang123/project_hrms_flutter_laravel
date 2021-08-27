@@ -70,10 +70,9 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ma_nv'        => 'unique:nhan_sus',
+ 
             'so_cmnd'        => 'unique:nhan_sus'
         ],[
-            'ma_nv.unique' => '"Mã nhân viên" đã tồn tại',
             'so_cmnd.unique' => '"Số CMND" đã tồn tại'
         ]);
       
