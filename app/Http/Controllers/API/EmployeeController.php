@@ -70,7 +70,6 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
- 
             'so_cmnd'        => 'unique:nhan_sus'
         ],[
             'so_cmnd.unique' => '"Số CMND" đã tồn tại'
@@ -83,8 +82,7 @@ class EmployeeController extends Controller
                     'message'=>'Employee Created Successfully!!',
                     'employee'=>$nhan_su,
                     'status'=>200,
-                ]);      
-            
+                ]);           
         }
         catch(\Exception $e){
             Log::error($e);
@@ -136,10 +134,8 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'ma_nv'        => 'unique:nhan_sus,ma_nv,'.$id,
             'so_cmnd'        => 'unique:nhan_sus,so_cmnd,'.$id
         ],[
-            'ma_nv.unique' => '"Mã nhân viên" đã tồn tại',
             'so_cmnd.unique' => '"Số CMND" đã tồn tại'
         ]);
 

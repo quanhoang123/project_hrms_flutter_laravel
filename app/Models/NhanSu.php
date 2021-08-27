@@ -60,10 +60,22 @@ class NhanSu extends Model
             $nhan_su->ngay_lam_viec_cuoi   = null;
         }
         $nhan_su->trinh_do           = $data['trinh_do'];
-        $nhan_su->nam_tot_nghiep     = $data['nam_tot_nghiep'];
-        $nhan_su->chuc_danh          = $data['chuc_danh'];
-        $nhan_su->phongban_id        = $data['phongban_id'];
-        $nhan_su->bophan_id          = $data['bophan_id'];
+        $nhan_su->nam_tot_nghiep     = $data['nam_tot_nghiep'];    
+        $nhan_su->chuc_danh   = $data['chuc_danh'];
+        
+
+        if($data['phongban_id'] != null){
+            $nhan_su->phongban_id   = $data['phongban_id'];
+        }else{
+            $nhan_su->phongban_id   = null;
+        }
+
+        if($data['bophan_id'] != null){
+            $nhan_su->bophan_id   = $data['bophan_id'];
+        }else{
+            $nhan_su->bophan_id   = null;
+        }
+        
         if($id == -1){
             $nhan_su->hoso_id        = $data['hoso_id'];
         }else{
